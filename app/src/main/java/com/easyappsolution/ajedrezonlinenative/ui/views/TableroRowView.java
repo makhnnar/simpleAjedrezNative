@@ -1,21 +1,26 @@
 package com.easyappsolution.ajedrezonlinenative.ui.views;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
 import com.easyappsolution.ajedrezonlinenative.R;
+import com.easyappsolution.ajedrezonlinenative.ui.views.interfaces.OnRowListener;
 
 
 /**
  * Created by makhnnar on 07/04/18.
  */
 
-public class TableroRowView extends ConstraintLayout{
+public class TableroRowView extends ConstraintLayout implements View.OnClickListener{
+
+    private OnRowListener onRowListener;
 
     private AppCompatImageView img1;
     private AppCompatImageView img2;
@@ -52,10 +57,24 @@ public class TableroRowView extends ConstraintLayout{
         img6 = (AppCompatImageView) findViewById(R.id.col_6);
         img7 = (AppCompatImageView) findViewById(R.id.col_7);
         img8 = (AppCompatImageView) findViewById(R.id.col_8);
+        img1.setOnClickListener(this);
+        img2.setOnClickListener(this);
+        img3.setOnClickListener(this);
+        img4.setOnClickListener(this);
+        img5.setOnClickListener(this);
+        img6.setOnClickListener(this);
+        img7.setOnClickListener(this);
+        img8.setOnClickListener(this);
+        TypedArray a = context.obtainStyledAttributes(set,
+                R.styleable.TableroRowView, 0, 0);
+        boolean startBlack = a.getBoolean(R.styleable.TableroRowView_startBlack,true);
+        Log.i("COLOR"," ---> STARTBLACK:"+startBlack);
+        a.recycle();
+        setBackgroundRow(startBlack);
     }
 
-    public void setBackgroundRow(int startBlack){
-        if(startBlack==1){
+    public void setBackgroundRow(boolean startBlack){
+        if(startBlack){
             img1.setBackgroundColor(getResources().getColor(R.color.black));
             img2.setBackgroundColor(getResources().getColor(R.color.white));
             img3.setBackgroundColor(getResources().getColor(R.color.black));
@@ -73,6 +92,39 @@ public class TableroRowView extends ConstraintLayout{
             img6.setBackgroundColor(getResources().getColor(R.color.black));
             img7.setBackgroundColor(getResources().getColor(R.color.white));
             img8.setBackgroundColor(getResources().getColor(R.color.black));
+        }
+    }
+
+    public void setOnRowListener(OnRowListener onRowListener){
+        if(onRowListener!=null)
+            this.onRowListener = onRowListener;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view.equals(img1)){
+            onRowListener.onRowTouch(1);
+        }
+        else if(view.equals(img2)){
+            onRowListener.onRowTouch(2);
+        }
+        else if(view.equals(img3)){
+            onRowListener.onRowTouch(3);
+        }
+        else if(view.equals(img4)){
+            onRowListener.onRowTouch(4);
+        }
+        else if(view.equals(img5)){
+            onRowListener.onRowTouch(5);
+        }
+        else if(view.equals(img6)){
+            onRowListener.onRowTouch(6);
+        }
+        else if(view.equals(img7)){
+            onRowListener.onRowTouch(7);
+        }
+        else if(view.equals(img8)){
+            onRowListener.onRowTouch(8);
         }
     }
 }

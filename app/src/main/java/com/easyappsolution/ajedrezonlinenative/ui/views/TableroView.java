@@ -4,15 +4,17 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 
 import com.easyappsolution.ajedrezonlinenative.R;
+import com.easyappsolution.ajedrezonlinenative.ui.views.interfaces.OnRowListener;
 
 /**
  * Created by makhnnar on 07/04/18.
  */
 
-public class TableroView extends ConstraintLayout{
+public class TableroView extends ConstraintLayout implements OnRowListener{
 
     private TableroRowView row1;
     private TableroRowView row2;
@@ -49,13 +51,20 @@ public class TableroView extends ConstraintLayout{
         row6 = (TableroRowView) findViewById(R.id.row_6);
         row7 = (TableroRowView) findViewById(R.id.row_7);
         row8 = (TableroRowView) findViewById(R.id.row_8);
-        row1.setBackgroundRow(1);
-        row2.setBackgroundRow(0);
-        row3.setBackgroundRow(1);
-        row4.setBackgroundRow(0);
-        row5.setBackgroundRow(1);
-        row6.setBackgroundRow(0);
-        row7.setBackgroundRow(1);
-        row8.setBackgroundRow(0);
+
+        row1.setOnRowListener(this);
+        row2.setOnRowListener(this);
+        row3.setOnRowListener(this);
+        row4.setOnRowListener(this);
+        row5.setOnRowListener(this);
+        row6.setOnRowListener(this);
+        row7.setOnRowListener(this);
+        row8.setOnRowListener(this);
+
+    }
+
+    @Override
+    public void onRowTouch(int row) {
+        Log.i("ID"," ---> "+row);
     }
 }
