@@ -2,5 +2,6 @@
 <resources>
     <declare-styleable name="TableroRowView">
         <attr name="startBlack" format="boolean"/>
+        <attr name="id_colum" format="integer"/>
     </declare-styleable>
 </resources>

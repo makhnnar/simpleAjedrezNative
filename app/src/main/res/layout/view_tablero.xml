@@ -22,49 +22,57 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:startBlack="true"
+            app:id_colum="1"
             />
 
         <com.easyappsolution.ajedrezonlinenative.ui.views.TableroRowView
             android:id="@+id/row_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:startBlack="false"/>
+            app:startBlack="false"
+            app:id_colum="2"/>
 
         <com.easyappsolution.ajedrezonlinenative.ui.views.TableroRowView
             android:id="@+id/row_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:startBlack="true"/>
+            app:startBlack="true"
+            app:id_colum="3"/>
 
         <com.easyappsolution.ajedrezonlinenative.ui.views.TableroRowView
             android:id="@+id/row_4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:startBlack="false"/>
+            app:startBlack="false"
+            app:id_colum="4"/>
 
         <com.easyappsolution.ajedrezonlinenative.ui.views.TableroRowView
             android:id="@+id/row_5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:startBlack="true"/>
+            app:startBlack="true"
+            app:id_colum="5"/>
 
         <com.easyappsolution.ajedrezonlinenative.ui.views.TableroRowView
             android:id="@+id/row_6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:startBlack="false"/>
+            app:startBlack="false"
+            app:id_colum="6"/>
 
         <com.easyappsolution.ajedrezonlinenative.ui.views.TableroRowView
             android:id="@+id/row_7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:startBlack="true"/>
+            app:startBlack="true"
+            app:id_colum="7"/>
 
         <com.easyappsolution.ajedrezonlinenative.ui.views.TableroRowView
             android:id="@+id/row_8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:startBlack="false"/>
+            app:startBlack="false"
+            app:id_colum="8"/>
 
     </LinearLayout>
 

@@ -31,6 +31,8 @@ public class TableroRowView extends ConstraintLayout implements View.OnClickList
     private AppCompatImageView img7;
     private AppCompatImageView img8;
 
+    private int id_colum;
+
     public TableroRowView(Context context) {
         super(context);
         init(null,context);
@@ -68,6 +70,7 @@ public class TableroRowView extends ConstraintLayout implements View.OnClickList
         TypedArray a = context.obtainStyledAttributes(set,
                 R.styleable.TableroRowView, 0, 0);
         boolean startBlack = a.getBoolean(R.styleable.TableroRowView_startBlack,true);
+        id_colum = a.getInteger(R.styleable.TableroRowView_id_colum,0);
         Log.i("COLOR"," ---> STARTBLACK:"+startBlack);
         a.recycle();
         setBackgroundRow(startBlack);
@@ -95,6 +98,14 @@ public class TableroRowView extends ConstraintLayout implements View.OnClickList
         }
     }
 
+    public int getId_colum(){
+        return id_colum;
+    }
+
+    public int getResCelda(int posInRow){
+        return 0; //todo: devolver el recurso segun pos. hacer lista de img
+    }
+
     public void setOnRowListener(OnRowListener onRowListener){
         if(onRowListener!=null)
             this.onRowListener = onRowListener;
@@ -103,28 +114,28 @@ public class TableroRowView extends ConstraintLayout implements View.OnClickList
     @Override
     public void onClick(View view) {
         if(view.equals(img1)){
-            onRowListener.onRowTouch(1);
+            onRowListener.onRowColumTouch(id_colum,1,false);
         }
         else if(view.equals(img2)){
-            onRowListener.onRowTouch(2);
+            onRowListener.onRowColumTouch(id_colum,2,false);
         }
         else if(view.equals(img3)){
-            onRowListener.onRowTouch(3);
+            onRowListener.onRowColumTouch(id_colum,3,false);
         }
         else if(view.equals(img4)){
-            onRowListener.onRowTouch(4);
+            onRowListener.onRowColumTouch(id_colum,4,false);
         }
         else if(view.equals(img5)){
-            onRowListener.onRowTouch(5);
+            onRowListener.onRowColumTouch(id_colum,5,false);
         }
         else if(view.equals(img6)){
-            onRowListener.onRowTouch(6);
+            onRowListener.onRowColumTouch(id_colum,6,false);
         }
         else if(view.equals(img7)){
-            onRowListener.onRowTouch(7);
+            onRowListener.onRowColumTouch(id_colum,7,false);
         }
         else if(view.equals(img8)){
-            onRowListener.onRowTouch(8);
+            onRowListener.onRowColumTouch(id_colum,8,false);
         }
     }
 }
