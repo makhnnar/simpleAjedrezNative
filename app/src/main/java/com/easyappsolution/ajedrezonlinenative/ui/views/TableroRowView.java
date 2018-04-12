@@ -13,6 +13,8 @@ import android.view.View;
 import com.easyappsolution.ajedrezonlinenative.R;
 import com.easyappsolution.ajedrezonlinenative.ui.views.interfaces.OnRowListener;
 
+import java.util.ArrayList;
+
 
 /**
  * Created by makhnnar on 07/04/18.
@@ -22,16 +24,9 @@ public class TableroRowView extends ConstraintLayout implements View.OnClickList
 
     private OnRowListener onRowListener;
 
-    private AppCompatImageView img1;
-    private AppCompatImageView img2;
-    private AppCompatImageView img3;
-    private AppCompatImageView img4;
-    private AppCompatImageView img5;
-    private AppCompatImageView img6;
-    private AppCompatImageView img7;
-    private AppCompatImageView img8;
-
     private int id_colum;
+
+    private ArrayList<AppCompatImageView> celdas = new ArrayList<AppCompatImageView>();
 
     public TableroRowView(Context context) {
         super(context);
@@ -51,22 +46,21 @@ public class TableroRowView extends ConstraintLayout implements View.OnClickList
     private void init(@Nullable AttributeSet set,Context context){
         final LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.view_tablero_row, this, true);
-        img1 = (AppCompatImageView) findViewById(R.id.col_1);
-        img2 = (AppCompatImageView) findViewById(R.id.col_2);
-        img3 = (AppCompatImageView) findViewById(R.id.col_3);
-        img4 = (AppCompatImageView) findViewById(R.id.col_4);
-        img5 = (AppCompatImageView) findViewById(R.id.col_5);
-        img6 = (AppCompatImageView) findViewById(R.id.col_6);
-        img7 = (AppCompatImageView) findViewById(R.id.col_7);
-        img8 = (AppCompatImageView) findViewById(R.id.col_8);
-        img1.setOnClickListener(this);
-        img2.setOnClickListener(this);
-        img3.setOnClickListener(this);
-        img4.setOnClickListener(this);
-        img5.setOnClickListener(this);
-        img6.setOnClickListener(this);
-        img7.setOnClickListener(this);
-        img8.setOnClickListener(this);
+
+        celdas.add( (AppCompatImageView) findViewById(R.id.col_1));
+        celdas.add( (AppCompatImageView) findViewById(R.id.col_2));
+        celdas.add( (AppCompatImageView) findViewById(R.id.col_3));
+        celdas.add( (AppCompatImageView) findViewById(R.id.col_4));
+        celdas.add( (AppCompatImageView) findViewById(R.id.col_5));
+        celdas.add( (AppCompatImageView) findViewById(R.id.col_6));
+        celdas.add( (AppCompatImageView) findViewById(R.id.col_7));
+        celdas.add( (AppCompatImageView) findViewById(R.id.col_8));
+
+
+        for(AppCompatImageView celda : celdas){
+            celda.setOnClickListener(this);
+        }
+
         TypedArray a = context.obtainStyledAttributes(set,
                 R.styleable.TableroRowView, 0, 0);
         boolean startBlack = a.getBoolean(R.styleable.TableroRowView_startBlack,true);
@@ -77,24 +71,29 @@ public class TableroRowView extends ConstraintLayout implements View.OnClickList
     }
 
     public void setBackgroundRow(boolean startBlack){
+        boolean beginBlack;
         if(startBlack){
-            img1.setBackgroundColor(getResources().getColor(R.color.black));
-            img2.setBackgroundColor(getResources().getColor(R.color.white));
-            img3.setBackgroundColor(getResources().getColor(R.color.black));
-            img4.setBackgroundColor(getResources().getColor(R.color.white));
-            img5.setBackgroundColor(getResources().getColor(R.color.black));
-            img6.setBackgroundColor(getResources().getColor(R.color.white));
-            img7.setBackgroundColor(getResources().getColor(R.color.black));
-            img8.setBackgroundColor(getResources().getColor(R.color.white));
+            beginBlack = true;
+            for(AppCompatImageView celda : celdas){
+                if(beginBlack) {
+                    celda.setBackgroundColor(getResources().getColor(R.color.black));
+                    beginBlack = false;
+                }else {
+                    celda.setBackgroundColor(getResources().getColor(R.color.white));
+                    beginBlack = true;
+                }
+            }
         }else{
-            img1.setBackgroundColor(getResources().getColor(R.color.white));
-            img2.setBackgroundColor(getResources().getColor(R.color.black));
-            img3.setBackgroundColor(getResources().getColor(R.color.white));
-            img4.setBackgroundColor(getResources().getColor(R.color.black));
-            img5.setBackgroundColor(getResources().getColor(R.color.white));
-            img6.setBackgroundColor(getResources().getColor(R.color.black));
-            img7.setBackgroundColor(getResources().getColor(R.color.white));
-            img8.setBackgroundColor(getResources().getColor(R.color.black));
+            beginBlack = false;
+            for(AppCompatImageView celda : celdas){
+                if(beginBlack) {
+                    celda.setBackgroundColor(getResources().getColor(R.color.black));
+                    beginBlack = false;
+                }else {
+                    celda.setBackgroundColor(getResources().getColor(R.color.white));
+                    beginBlack = true;
+                }
+            }
         }
     }
 
@@ -113,29 +112,11 @@ public class TableroRowView extends ConstraintLayout implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-        if(view.equals(img1)){
-            onRowListener.onRowColumTouch(id_colum,1,false);
-        }
-        else if(view.equals(img2)){
-            onRowListener.onRowColumTouch(id_colum,2,false);
-        }
-        else if(view.equals(img3)){
-            onRowListener.onRowColumTouch(id_colum,3,false);
-        }
-        else if(view.equals(img4)){
-            onRowListener.onRowColumTouch(id_colum,4,false);
-        }
-        else if(view.equals(img5)){
-            onRowListener.onRowColumTouch(id_colum,5,false);
-        }
-        else if(view.equals(img6)){
-            onRowListener.onRowColumTouch(id_colum,6,false);
-        }
-        else if(view.equals(img7)){
-            onRowListener.onRowColumTouch(id_colum,7,false);
-        }
-        else if(view.equals(img8)){
-            onRowListener.onRowColumTouch(id_colum,8,false);
+        for(int i=0;i<celdas.size();i++){
+            if(view.equals(celdas.get(i))){
+                onRowListener.onRowColumTouch(id_colum,i+1,false);
+                return;
+            }
         }
     }
 }
