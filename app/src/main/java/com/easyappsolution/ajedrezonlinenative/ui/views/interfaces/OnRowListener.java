@@ -6,8 +6,6 @@ package com.easyappsolution.ajedrezonlinenative.ui.views.interfaces;
 
 public interface OnRowListener {
 
-    void onRowColumTouch( int colum, int row, boolean isOcupped);
-    void moveElement(int colum, int row,int res);
-    int getElement(int colum, int row);
+    void onRowColumTouch( int colum, int row);
 
 }

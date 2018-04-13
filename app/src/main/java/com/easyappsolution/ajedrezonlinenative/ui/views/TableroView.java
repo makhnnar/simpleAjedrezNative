@@ -4,13 +4,13 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
+
 
 import com.easyappsolution.ajedrezonlinenative.R;
 import com.easyappsolution.ajedrezonlinenative.ui.views.interfaces.OnRowListener;
 import com.easyappsolution.ajedrezonlinenative.ui.views.interfaces.OnTableroListener;
+import com.easyappsolution.ajedrezonlinenative.ui.views.model.FichaModel;
 
 import java.util.ArrayList;
 
@@ -68,22 +68,30 @@ public class TableroView extends ConstraintLayout implements OnRowListener{
     }
 
     @Override
-    public void onRowColumTouch(int colum,int row,boolean isOcupped) {
-        onTableroListener.onClickTablero(colum,row,isOcupped);
+    public void onRowColumTouch(int colum,int row) {
+        onTableroListener.onClickTablero(colum,row);
     }
 
-    @Override
-    public void moveElement(int colum, int row, int res) {
-
+    public void initTablero(ArrayList<FichaModel> fichas){
+        for(FichaModel ficha : fichas) {
+            drawElement(ficha.getColum(),ficha.getRow(),ficha.getRes());
+        }
     }
 
-    @Override
-    public int getElement(int colum, int row) {
-        for(TableroRowView fila : columnas){
-            if(fila.getId_colum()==colum){
-                return fila.getResCelda(row);
+    public void drawElement(int colum, int row, int res) {
+        for(TableroRowView fila : columnas) {
+            if (fila.getId_colum() == colum) {
+                fila.drawElement(row,res);
             }
         }
-        return -1;
     }
+
+    public void eraseElement(int colum, int row) {
+        for(TableroRowView fila : columnas) {
+            if (fila.getId_colum() == colum) {
+                fila.eraseElement(row);
+            }
+        }
+    }
+
 }

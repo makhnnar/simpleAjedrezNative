@@ -6,6 +6,6 @@ package com.easyappsolution.ajedrezonlinenative.ui.views.interfaces;
 
 public interface OnTableroListener {
 
-    void onClickTablero(int colum,int row,boolean isOcuped);
+    void onClickTablero(int colum,int row);
 
 }

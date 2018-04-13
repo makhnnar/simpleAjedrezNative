@@ -101,8 +101,12 @@ public class TableroRowView extends ConstraintLayout implements View.OnClickList
         return id_colum;
     }
 
-    public int getResCelda(int posInRow){
-        return 0; //todo: devolver el recurso segun pos. hacer lista de img
+    public void drawElement(int row,int res){
+        celdas.get(row).setImageDrawable(getResources().getDrawable(res));
+    }
+
+    public void eraseElement(int row){
+        celdas.get(row).setImageDrawable(null);
     }
 
     public void setOnRowListener(OnRowListener onRowListener){
@@ -114,7 +118,7 @@ public class TableroRowView extends ConstraintLayout implements View.OnClickList
     public void onClick(View view) {
         for(int i=0;i<celdas.size();i++){
             if(view.equals(celdas.get(i))){
-                onRowListener.onRowColumTouch(id_colum,i+1,false);
+                onRowListener.onRowColumTouch(id_colum,i+1);
                 return;
             }
         }

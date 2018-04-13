@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context="com.easyappsolution.ajedrezonlinenative.HomeActivity">
+    tools:context="com.easyappsolution.ajedrezonlinenative.ui.home.HomeActivity">
 
     <com.easyappsolution.ajedrezonlinenative.ui.views.TableroView
         android:id="@+id/tablero"
