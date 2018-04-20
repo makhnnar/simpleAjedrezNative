@@ -7,20 +7,20 @@ class GameContract {
 
     interface View{
 
-        fun onRemoveFicha(row:Int,colum:Int)
-        fun onMoveFicha(row:Int,colum:Int)
+        fun onRemoveFicha(colum:Int,row:Int)
+        fun onMoveFicha(colum:Int,row:Int,res:Int)
 
     }
 
     interface Presenter{
 
-        fun moveFicha(row:Int,colum:Int)
+        fun moveFicha(colum:Int,row:Int)
 
     }
 
     interface ModelResultListener{
 
-        fun onMoveFichaSuccess()
+        fun onMoveFichaSuccess(colum:Int,row:Int)
         fun onMoveFichaFailed()
 
     }

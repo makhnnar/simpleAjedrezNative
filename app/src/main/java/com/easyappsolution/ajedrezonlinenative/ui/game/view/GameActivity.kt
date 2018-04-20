@@ -6,6 +6,7 @@ import com.easyappsolution.ajedrezonlinenative.R
 import com.easyappsolution.ajedrezonlinenative.ui.game.mvp.GameContract.View
 import com.easyappsolution.ajedrezonlinenative.ui.game.mvp.GamePresenter
 import com.easyappsolution.ajedrezonlinenative.ui.views.interfaces.OnTableroListener
+import kotlinx.android.synthetic.main.activity_home.*
 
 class GameActivity : AppCompatActivity(), View, OnTableroListener {
 
@@ -17,15 +18,15 @@ class GameActivity : AppCompatActivity(), View, OnTableroListener {
         gamePresenter = GamePresenter(this)
     }
 
-    override fun onRemoveFicha(row:Int,colum:Int) {
-
+    override fun onRemoveFicha(colum:Int,row:Int) {
+        this.tablero.eraseElement(colum,row)
     }
 
-    override fun onMoveFicha(row:Int,colum:Int) {
-
+    override fun onMoveFicha(colum:Int,row:Int,res:Int) {
+        this.tablero.drawElement(colum,row,res)
     }
 
     override fun onClickTablero(colum: Int, row: Int) {
-        gamePresenter.moveFicha(row,colum)
+        gamePresenter.moveFicha(colum,row)
     }
 }
