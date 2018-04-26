@@ -8,7 +8,10 @@ import com.easyappsolution.ajedrezonlinenative.ui.game.Models.Player
  */
 class GamePresenter(var view:GameContract.View) : GameContract.Presenter, GameContract.ModelResultListener{
 
+
     lateinit var piezas : List<ChessPiece>
+
+    lateinit var pieza : ChessPiece
 
     var pos : Int = -1
 
@@ -28,11 +31,24 @@ class GamePresenter(var view:GameContract.View) : GameContract.Presenter, GameCo
             }
         }else{
             if(pos>-1){
-                //Mandamos la posicion a la que queremos mandas
+                //Mandamos la posicion a la que queremos mandar
                 //TODO: isMoving no sirve para nada aparentemente
-                interactor.makePlayAndValidate(colum,row,this)
+                interactor.makePlayAndValidate(colum,row,pieza,this)
             }
         }
+    }
+
+    override fun initGame() {
+        interactor.initGame(this)
+    }
+
+    override fun onLoadSuccessAllPieces(pieces: List<ChessPiece>) {
+        if(pieces.isNotEmpty())
+            view.onShowAllPieces(pieces)
+    }
+
+    override fun onLoadFailedAllPieces() {
+        view.onCloseGameSession()
     }
 
     override fun onMoveFichaSuccess(colum:Int,row:Int) {
@@ -62,8 +78,10 @@ class GamePresenter(var view:GameContract.View) : GameContract.Presenter, GameCo
     }
 
     fun isMine(piece: ChessPiece?): Boolean{
-        if(piece?.idPlayer==player.idPlayer)
+        if(piece?.idPlayer==player.idPlayer){
+            pieza = piece
             return true
+        }
         return false
     }
 

@@ -3,6 +3,7 @@ package com.easyappsolution.ajedrezonlinenative.ui.game.view
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.easyappsolution.ajedrezonlinenative.R
+import com.easyappsolution.ajedrezonlinenative.ui.game.Models.ChessPiece
 import com.easyappsolution.ajedrezonlinenative.ui.game.mvp.GameContract.View
 import com.easyappsolution.ajedrezonlinenative.ui.game.mvp.GamePresenter
 import com.easyappsolution.ajedrezonlinenative.ui.views.interfaces.OnTableroListener
@@ -16,6 +17,7 @@ class GameActivity : AppCompatActivity(), View, OnTableroListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
         gamePresenter = GamePresenter(this)
+        gamePresenter.initGame()
     }
 
     override fun onRemoveFicha(colum:Int,row:Int) {
@@ -28,5 +30,15 @@ class GameActivity : AppCompatActivity(), View, OnTableroListener {
 
     override fun onClickTablero(colum: Int, row: Int) {
         gamePresenter.moveFicha(colum,row)
+    }
+
+    override fun onShowAllPieces(pieces: List<ChessPiece>) {
+        for (pieza : ChessPiece in pieces){
+            this.tablero.drawElement(pieza.colum,pieza.row,pieza.res)
+        }
+    }
+
+    override fun onCloseGameSession() {
+
     }
 }
