@@ -4,8 +4,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.easyappsolution.ajedrezonlinenative.R
 import com.easyappsolution.ajedrezonlinenative.ui.game.Models.ChessPiece
-import com.easyappsolution.ajedrezonlinenative.ui.game.mvp.GameContract.View
-import com.easyappsolution.ajedrezonlinenative.ui.game.mvp.GamePresenter
+import com.easyappsolution.ajedrezonlinenative.ui.game.mvp.contract.GameContract.View
+import com.easyappsolution.ajedrezonlinenative.ui.game.mvp.presenters.GamePresenter
 import com.easyappsolution.ajedrezonlinenative.ui.views.interfaces.OnTableroListener
 import kotlinx.android.synthetic.main.activity_home.*
 

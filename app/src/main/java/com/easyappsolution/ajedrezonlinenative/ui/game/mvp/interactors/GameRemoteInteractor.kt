@@ -1,13 +1,14 @@
-package com.easyappsolution.ajedrezonlinenative.ui.game.mvp
+package com.easyappsolution.ajedrezonlinenative.ui.game.mvp.interactors
 
 import com.easyappsolution.ajedrezonlinenative.R
 import com.easyappsolution.ajedrezonlinenative.ui.game.Models.ChessPiece
 import com.easyappsolution.ajedrezonlinenative.ui.game.Models.ChessType
+import com.easyappsolution.ajedrezonlinenative.ui.game.mvp.contract.GameContract
 
 /**
  * Created by makhnnar on 14/04/18.
  */
-class GameInteractor {
+class GameRemoteInteractor {
 
     fun initGame(listener: GameContract.ModelResultListener){
         var pieces : ArrayList<ChessPiece> = ArrayList<ChessPiece>()

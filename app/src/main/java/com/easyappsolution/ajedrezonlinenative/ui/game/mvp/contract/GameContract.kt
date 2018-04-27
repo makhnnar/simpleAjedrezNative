@@ -1,4 +1,4 @@
-package com.easyappsolution.ajedrezonlinenative.ui.game.mvp
+package com.easyappsolution.ajedrezonlinenative.ui.game.mvp.contract
 
 import com.easyappsolution.ajedrezonlinenative.ui.game.Models.ChessPiece
 
@@ -17,6 +17,20 @@ class GameContract {
     }
 
     interface Presenter{
+
+        fun moveFicha(colum:Int,row:Int)
+        fun initGame()
+
+    }
+
+    interface LocalInteractor{
+
+        fun moveFicha(colum:Int,row:Int)
+        fun initGame()
+
+    }
+
+    interface RemoteInteractor{
 
         fun moveFicha(colum:Int,row:Int)
         fun initGame()

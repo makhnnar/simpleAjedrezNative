@@ -1,12 +1,14 @@
-package com.easyappsolution.ajedrezonlinenative.ui.game.mvp
+package com.easyappsolution.ajedrezonlinenative.ui.game.mvp.presenters
 
 import com.easyappsolution.ajedrezonlinenative.ui.game.Models.ChessPiece
 import com.easyappsolution.ajedrezonlinenative.ui.game.Models.Player
+import com.easyappsolution.ajedrezonlinenative.ui.game.mvp.contract.GameContract
+import com.easyappsolution.ajedrezonlinenative.ui.game.mvp.interactors.GameRemoteInteractor
 
 /**
  * Created by makhnnar on 14/04/18.
  */
-class GamePresenter(var view:GameContract.View) : GameContract.Presenter, GameContract.ModelResultListener{
+class GamePresenter(var view: GameContract.View) : GameContract.Presenter, GameContract.ModelResultListener {
 
 
     lateinit var piezas : List<ChessPiece>
@@ -19,7 +21,7 @@ class GamePresenter(var view:GameContract.View) : GameContract.Presenter, GameCo
 
     var imMoving : Boolean = false
 
-    var interactor : GameInteractor = GameInteractor()
+    var interactor : GameRemoteInteractor = GameRemoteInteractor()
 
     override fun moveFicha(colum:Int,row:Int) {
         if(this.isOne(colum,row)){
