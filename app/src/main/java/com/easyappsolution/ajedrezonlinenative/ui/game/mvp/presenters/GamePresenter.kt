@@ -10,7 +10,6 @@ import com.easyappsolution.ajedrezonlinenative.ui.game.mvp.interactors.GameRemot
  */
 class GamePresenter(var view: GameContract.View) : GameContract.Presenter, GameContract.ModelResultListener {
 
-
     lateinit var piezas : List<ChessPiece>
 
     lateinit var pieza : ChessPiece
@@ -21,7 +20,7 @@ class GamePresenter(var view: GameContract.View) : GameContract.Presenter, GameC
 
     var imMoving : Boolean = false
 
-    var interactor : GameRemoteInteractor = GameRemoteInteractor()
+    var interactor : GameRemoteInteractor = GameRemoteInteractor(this)
 
     override fun moveFicha(colum:Int,row:Int) {
         if(this.isOne(colum,row)){
@@ -35,13 +34,21 @@ class GamePresenter(var view: GameContract.View) : GameContract.Presenter, GameC
             if(pos>-1){
                 //Mandamos la posicion a la que queremos mandar
                 //TODO: isMoving no sirve para nada aparentemente
-                interactor.makePlayAndValidate(colum,row,pieza,this)
+                interactor.makePlayAndValidate(colum,row,pieza)
             }
         }
     }
 
+    override fun sendMessage(msj: String) {
+
+    }
+
+    override fun onMsjRecieve(msj: String) {
+
+    }
+
     override fun initGame() {
-        interactor.initGame(this)
+        interactor.initGame()
     }
 
     override fun onLoadSuccessAllPieces(pieces: List<ChessPiece>) {

@@ -4,13 +4,21 @@ import com.easyappsolution.ajedrezonlinenative.R
 import com.easyappsolution.ajedrezonlinenative.ui.game.Models.ChessPiece
 import com.easyappsolution.ajedrezonlinenative.ui.game.Models.ChessType
 import com.easyappsolution.ajedrezonlinenative.ui.game.mvp.contract.GameContract
+import com.easyappsolution.ajedrezonlinenative.ui.game.mvp.contract.GameContract.ModelResultListener
+import com.easyappsolution.ajedrezonlinenative.ui.game.mvp.repositories.ServerGameRepository
 
 /**
  * Created by makhnnar on 14/04/18.
  */
-class GameRemoteInteractor {
+class GameRemoteInteractor(var listener: ModelResultListener) : GameContract.RemoteInteractor {
 
-    fun initGame(listener: GameContract.ModelResultListener){
+    var repository : ServerGameRepository = ServerGameRepository(this)
+
+    override fun onReciveMsg(msg: String) {
+        listener.onMsjRecieve(msg)
+    }
+
+    fun initGame(){
         var pieces : ArrayList<ChessPiece> = ArrayList<ChessPiece>()
         pieces.add(ChessPiece(1,1, R.drawable.test,ChessType.PEON,1,"1"))
         pieces.add(ChessPiece(1,2, R.drawable.test,ChessType.PEON,2,"1"))
@@ -23,7 +31,7 @@ class GameRemoteInteractor {
         listener.onLoadSuccessAllPieces(pieces)
     }
 
-    fun makePlayAndValidate(colum:Int,row:Int,pieza:ChessPiece,listener: GameContract.ModelResultListener){
+    fun makePlayAndValidate(colum:Int,row:Int,pieza:ChessPiece){
         //TODO: debo validar si es una jugada correcta antes de mandar al back
         listener.onMoveFichaSuccess(colum,row)
     }

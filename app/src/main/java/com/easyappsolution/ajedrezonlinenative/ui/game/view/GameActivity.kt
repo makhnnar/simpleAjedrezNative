@@ -2,6 +2,7 @@ package com.easyappsolution.ajedrezonlinenative.ui.game.view
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.easyappsolution.ajedrezonlinenative.R
 import com.easyappsolution.ajedrezonlinenative.ui.game.Models.ChessPiece
 import com.easyappsolution.ajedrezonlinenative.ui.game.mvp.contract.GameContract.View
@@ -40,5 +41,9 @@ class GameActivity : AppCompatActivity(), View, OnTableroListener {
 
     override fun onCloseGameSession() {
 
+    }
+
+    override fun onMsjRecieve(msj: String) {
+        Log.i("MSG"," ---> "+msj)
     }
 }

@@ -14,12 +14,16 @@ class GameContract {
         fun onShowAllPieces(pieces : List<ChessPiece>)
         fun onCloseGameSession()
 
+        fun onMsjRecieve(msj:String)
+
     }
 
     interface Presenter{
 
         fun moveFicha(colum:Int,row:Int)
         fun initGame()
+
+        fun sendMessage(msj:String)
 
     }
 
@@ -32,8 +36,7 @@ class GameContract {
 
     interface RemoteInteractor{
 
-        fun moveFicha(colum:Int,row:Int)
-        fun initGame()
+        fun onReciveMsg(msg:String)
 
     }
 
@@ -43,6 +46,8 @@ class GameContract {
         fun onMoveFichaFailed()
         fun onLoadSuccessAllPieces(pieces : List<ChessPiece>)
         fun onLoadFailedAllPieces()
+
+        fun onMsjRecieve(msj:String)
 
     }
 
