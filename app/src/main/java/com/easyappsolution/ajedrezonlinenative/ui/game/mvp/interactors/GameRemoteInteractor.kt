@@ -36,4 +36,8 @@ class GameRemoteInteractor(var listener: ModelResultListener) : GameContract.Rem
         listener.onMoveFichaSuccess(colum,row)
     }
 
+    fun sendMsj(msj:String){
+        repository.emit("my message",msj)
+    }
+
 }

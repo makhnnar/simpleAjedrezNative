@@ -17,6 +17,7 @@ class GameActivity : AppCompatActivity(), View, OnTableroListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+        this.tablero.setOnTableroListener(this)
         gamePresenter = GamePresenter(this)
         gamePresenter.initGame()
     }
@@ -30,7 +31,9 @@ class GameActivity : AppCompatActivity(), View, OnTableroListener {
     }
 
     override fun onClickTablero(colum: Int, row: Int) {
-        gamePresenter.moveFicha(colum,row)
+        Log.i("ENVIANDO","---> colum: "+colum+" row: "+row)
+        gamePresenter.sendMessage(" colum: "+colum+" row: "+row)
+        // gamePresenter.moveFicha(colum,row)
     }
 
     override fun onShowAllPieces(pieces: List<ChessPiece>) {

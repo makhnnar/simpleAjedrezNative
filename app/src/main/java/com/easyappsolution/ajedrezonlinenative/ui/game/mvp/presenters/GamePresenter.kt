@@ -40,7 +40,7 @@ class GamePresenter(var view: GameContract.View) : GameContract.Presenter, GameC
     }
 
     override fun sendMessage(msj: String) {
-
+        interactor.sendMsj(msj)
     }
 
     override fun onMsjRecieve(msj: String) {
