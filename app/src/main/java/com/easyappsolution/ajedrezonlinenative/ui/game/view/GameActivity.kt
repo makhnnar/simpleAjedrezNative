@@ -32,8 +32,8 @@ class GameActivity : AppCompatActivity(), View, OnTableroListener {
 
     override fun onClickTablero(colum: Int, row: Int) {
         Log.i("ENVIANDO","---> colum: "+colum+" row: "+row)
-        gamePresenter.sendMessage(" colum: "+colum+" row: "+row)
-        // gamePresenter.moveFicha(colum,row)
+        //gamePresenter.sendMessage(" colum: "+colum+" row: "+row)
+        gamePresenter.moveFicha(colum,row)
     }
 
     override fun onShowAllPieces(pieces: List<ChessPiece>) {

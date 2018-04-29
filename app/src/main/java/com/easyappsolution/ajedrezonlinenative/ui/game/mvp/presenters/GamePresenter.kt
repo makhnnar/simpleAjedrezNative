@@ -8,7 +8,7 @@ import com.easyappsolution.ajedrezonlinenative.ui.game.mvp.interactors.GameRemot
 /**
  * Created by makhnnar on 14/04/18.
  */
-class GamePresenter(var view: GameContract.View) : GameContract.Presenter, GameContract.ModelResultListener {
+class GamePresenter(var view: GameContract.View) : GameContract.Presenter, GameContract.RemoteResultListener, GameContract.LocalResultListener {
 
     lateinit var piezas : List<ChessPiece>
 
@@ -92,6 +92,14 @@ class GamePresenter(var view: GameContract.View) : GameContract.Presenter, GameC
             return true
         }
         return false
+    }
+
+    override fun onFoundSuccess(piece: ChessPiece) {
+
+    }
+
+    override fun onFoundFailed() {
+
     }
 
 }

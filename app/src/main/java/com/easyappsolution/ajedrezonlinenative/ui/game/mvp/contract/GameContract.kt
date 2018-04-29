@@ -29,8 +29,7 @@ class GameContract {
 
     interface LocalInteractor{
 
-        fun moveFicha(colum:Int,row:Int)
-        fun initGame()
+        fun foundIt(colum:Int,row:Int)
 
     }
 
@@ -40,7 +39,14 @@ class GameContract {
 
     }
 
-    interface ModelResultListener{
+    interface LocalResultListener{
+
+        fun onFoundSuccess(piece: ChessPiece)
+        fun onFoundFailed()
+
+    }
+
+    interface RemoteResultListener{
 
         fun onMoveFichaSuccess(colum:Int,row:Int)
         fun onMoveFichaFailed()
